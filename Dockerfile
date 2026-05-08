@@ -7,10 +7,13 @@ ARG DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && apt-get install -y git && rm -rf /var/lib/apt/lists/*
 
 # Clone your repository
-RUN git clone https://github.com/spadeguy1-cloud/Swilliams-landing-page.git /app
+RUN git clone https://github.com/citronoiseau/S504_TriviaMaze_TeamDelta.git /app
 
 # Set the working directory
 WORKDIR /app
 
-# Serve the static site on port 8000
-CMD ["python", "-m", "http.server", "8000", "--bind", "0.0.0.0"]
+# Install Python dependencies
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Run the maze
+CMD ["python", "main.py"]
