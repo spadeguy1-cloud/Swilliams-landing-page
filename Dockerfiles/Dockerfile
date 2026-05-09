@@ -1,11 +1,15 @@
 # Trivia Maze – Team Delta
 # Clones https://github.com/citronoiseau/S504_TriviaMaze_TeamDelta and runs the CLI.
 #
-# Build:
-#   docker build -t trivia-maze .
+# Build (from the Dockerfiles/ directory):
+#   cd ~/Dockerfiles
+#   docker build -t maze .
 #
 # Run (interactive — the game requires stdin/stdout):
-#   docker run -it trivia-maze
+#   docker run --rm -it maze
+#
+# Debug shell (drop into container without starting the game):
+#   docker run --rm -it maze bash
 
 FROM python:3.11-slim
 
