@@ -1,19 +1,34 @@
+# Trivia Maze – Team Delta
+# Clones https://github.com/citronoiseau/S504_TriviaMaze_TeamDelta and runs the CLI.
+#
+# Build (from the Dockerfiles/ directory):
+#   cd ~/Dockerfiles
+#   docker build -t maze .
+#
+# Run (interactive — the game requires stdin/stdout):
+#   docker run --rm -it maze
+#
+# Debug shell (drop into container without starting the game):
+#   docker run --rm -it maze bash
+
 FROM python:3.11-slim
 
-# Prevent interactive prompts during package installation
+# Install git and minimal system libs needed by sqlmodel/SQLite
 ARG DEBIAN_FRONTEND=noninteractive
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends git \
+    && rm -rf /var/lib/apt/lists/*
 
-# Install git so we can clone the repo
-RUN apt-get update && apt-get install -y git && rm -rf /var/lib/apt/lists/*
+# Clone the repository into /app
+RUN git clone https://github.com/citronoiseau/S504_TriviaMaze_TeamDelta.git /app
 
-# Clone your repository
-RUN git clone https://github.com/spadeguy1-cloud/maze.git /app
-
-# Set the working directory
 WORKDIR /app
 
-# Install Python dependencies
+# Install dependencies.
+# pygame-ce is listed in requirements.txt but is only used by the optional
+# 3-D renderer (pygame_3d.py).  The CLI (main.py) does not import pygame,
+# so we install all deps but the container does not need a display server.
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Run the maze
-CMD ["python", "maze.py"]
+# The game is interactive; always allocate a TTY with `docker run -it`.
+CMD ["python", "main.py"]
