@@ -13,9 +13,10 @@ const state = {
   isOpen: false,
   index: 0,
   images: [
-    { src: 'images/sample-1.svg', caption: 'Sample image one — replace with your own' },
-    { src: 'images/sample-2.svg', caption: 'Sample image two — a second photo' },
-    { src: 'images/sample-3.svg', caption: 'Sample image three — a third' },
+    { src: 'images/cat-sleeping.jpg',  caption: 'A sleeping cat placeholder — replace with your own photo' },
+    { src: 'images/dog-happy.jpg',     caption: 'A happy dog placeholder — swap in your own image' },
+    { src: 'images/cat-curious.jpg',   caption: 'A curious cat placeholder — use your travel, pet, or project photos' },
+    { src: 'images/dog-sitting.jpg',   caption: 'A sitting dog placeholder — add as many photos as you like' },
   ],
 };
 

@@ -1,31 +1,22 @@
 /* CS 506 · Week 3 Starter · Lightbox styling
  * Backdrop, centered image, fade-in transition.
- * Students may restyle or replace to match their own page.
+ * The .gallery grid layout lives in style.css — only thumbnail
+ * interaction styles and the overlay are defined here.
  */
 
 /* ── Gallery thumbnails ────────────────────────────────────────────── */
-.gallery {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-  gap: 1rem;
-  padding: 1rem;
-  max-width: 900px;
-  margin: 0 auto;
-}
-
 .gallery__thumb {
   width: 100%;
-  aspect-ratio: 1 / 1;
+  height: 250px;
   object-fit: cover;
+  display: block;
   cursor: pointer;
-  border-radius: 6px;
-  border: 1px solid #ddd;
   transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
 .gallery__thumb:hover {
   transform: scale(1.03);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 /* ── Lightbox overlay ──────────────────────────────────────────────── */
